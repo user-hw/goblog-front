@@ -59,8 +59,25 @@ export default class PostList extends React.Component{
                             <a href="#">
                                 <h2>{value.title}</h2>
                             </a>
-                            <p>{value.content}</p>
-                            {value.pid}
+                            <p>{value.markdown}</p>
+                            <div class="post-action">
+                              <span>
+                                <i class="iconfont icon-yonghu"></i>
+                                &nbsp; {"value.userName"}
+                              </span>
+                              <span>
+                                <i class="iconfont icon-wenjianjia"></i>
+                                &nbsp;<a href="#">{value.categoryId}</a>
+                              </span>
+                              <span>
+                                <i class="iconfont icon-riqi"></i>
+                                &nbsp;{value.createAt}
+                              </span>
+                              <span>
+                                <i class="iconfont icon-yanjing"></i>
+                                &nbsp;{value.updateAt}
+                              </span>
+                            </div>
                         
                         </li>
                     );
