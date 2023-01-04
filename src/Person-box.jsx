@@ -1,17 +1,3 @@
-
-// function updateState(data) {
-//   setState({
-//     ...state,
-//     Avatar: data.Avatar,
-//     UserName: data.UserName,
-//     UserDesc: data.UserDesc,
-//     Bilibili: data.Bilibili,
-//     zhihu: data.zhihu,
-//     // Categorys:data.Categorys,
-//   })
-// };
-
-
 let url = 'http://139.186.213.52:8082/page/userinfo/henryk'
 fetch(url, {
   method: 'GET',
@@ -23,7 +9,7 @@ fetch(url, {
   }
   // updateState(data)
   console.log("调用了fetch")
-  function GetInfo() {
+  function PersonBox() {
     console.log("调用执行了这个函数"+"GetInfo")
     console.log("data1",data)
     // setState({
@@ -70,9 +56,10 @@ fetch(url, {
       </div>
     )
   };
-  
-  ReactDOM.render(<GetInfo />, document.querySelector("#app"));
+ 
+  ReactDOM.render(<PersonBox />, document.querySelector("#app"));
 })
+
 // ReactDOM.render(<GetInfo />, document.querySelector("#app"));
 // function GetInfo() {
 //   console.log("调用执行了这个函数"+"GetInfo")

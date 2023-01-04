@@ -329,11 +329,11 @@ header {
   width: 1200px;
   margin: 0 auto;
   padding: 20px 0;
-  top: 120px;
 
 }
 .container-left {
   width: 220px;
+  margin-top: 100px;
 }
 .container-right {
   width: calc(100% - 232px);

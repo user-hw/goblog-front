@@ -1,10 +1,10 @@
-import App from "../App";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import List from "../pages/List";
 import Login from "../pages/Login";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Index from "../pages/Index";
+import Test from "../pages/Test";
 
 const  BaseRouter = () =>{
     return(
@@ -15,6 +15,7 @@ const  BaseRouter = () =>{
             <Route path="/home" element={<Home />}></Route>
             <Route path="/list" element={<List />}></Route>
             <Route path="/detail" element={<Detail />}></Route>
+            <Route path="/test/:name" element={<Test />}></Route>
         </Routes>
         </BrowserRouter >
 

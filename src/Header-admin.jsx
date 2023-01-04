@@ -2,11 +2,9 @@ import React from "react";
 class HeaderAdmin extends React.Component{
   render(){
 
-  
   return(   
 
     <div> 
-      <link rel="stylesheet" href="/resource/css/index.css" />
     <header id="header" class="header fixed-top d-flex align-items-center">       
       <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
