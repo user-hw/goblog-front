@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import '../css/detail.css';
 
+import HeaderAdmin from '../Header-admin';
+
 import Valine from 'valine';
 
 
@@ -11,6 +13,7 @@ export default class PostList extends React.Component {
     super(props)
     this.state={
         post:{},
+        userInfo:{},
         test:"",
     }
   }
@@ -35,11 +38,13 @@ export default class PostList extends React.Component {
      .then((data) => {
        console.log("data.data === ",data.data)  
        this.setState({
-            post:data.data[0],
+            post:data.data.post,
+            userInfo:data.data.userInfo,
             test:"1"
        })
       })
       console.log("this.state.post === ",this.state.post)
+      console.log("this.state.userInfo === ",this.state.userInfo)
       console.log("this.state.test === ",this.state.test)
      } 
   
@@ -47,8 +52,9 @@ export default class PostList extends React.Component {
   render(){
     return (
     <div>
+      <HeaderAdmin />
       {/* style={"padding-top": "100px";} */}
-        <main className="container" >
+        <main className="container" style={{paddingTop:'100px'}}>
 
         <script src="https://static.mszlu.com/goblog/es6/md-assets/js/valine.min.js"></script>
 
@@ -58,7 +64,7 @@ export default class PostList extends React.Component {
             <div className="detail-action">
               <span>
                 <i className="iconfont icon-yonghu"></i>
-                &nbsp; {this.state.post.userName}
+                &nbsp; {this.state.userInfo.userName}
               </span>
               <span>
                 <i className="iconfont icon-wenjianjia"></i>
@@ -85,7 +91,7 @@ export default class PostList extends React.Component {
 
             <div id="view-content" className="detail-content" dangerouslySetInnerHTML = {{ __html: this.state.post.content }}></div>
             <div className="gap-solid vcomments-gap"></div>
-            <div id="vcomments" class="vcomments"></div>
+            <div id="vcomments" className="vcomments"></div>
             <div className="vcomments-copyright">Comment Powered By Valine</div>
 
           </div>
