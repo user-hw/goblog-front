@@ -56,11 +56,14 @@ export default class PostList extends React.Component{
               this.state.post.map(function (value, key) {
                   return (
                       <li key={key}>
-                          <a href="#">
+                          <a href={"/post/"+value.pid}>
                               <h2>{value.title}</h2>
                           </a>
-                          <p>{value.markdown}</p>
+                          <p dangerouslySetInnerHTML = {{ __html: value.content }} />
+                          {/* <p>{value.content}</p> */}
+
                           <div class="post-action">
+                            
                             <span>
                               <i class="iconfont icon-yonghu"></i>
                               &nbsp; {"value.userName"}

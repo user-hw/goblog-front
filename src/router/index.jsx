@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Index from "../pages/Index";
 import Test from "../pages/Test";
+import Post from "../pages/Post";
 
 const  BaseRouter = () =>{
     return(
@@ -16,6 +17,7 @@ const  BaseRouter = () =>{
             <Route path="/list" element={<List />}></Route>
             <Route path="/detail" element={<Detail />}></Route>
             <Route path="/test/:name" element={<Test />}></Route>
+            <Route path="/post/:pid" element={<Post />} ></Route>
         </Routes>
         </BrowserRouter >
 
