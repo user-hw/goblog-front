@@ -7,7 +7,7 @@ import HeaderAdmin from '../Header-admin';
 import Valine from 'valine';
 
 
-export default class PostList extends React.Component {  
+export default class Post extends React.Component {  
     
   constructor(props){
     super(props)

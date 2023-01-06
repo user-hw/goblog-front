@@ -8,24 +8,8 @@ import PostList from '../Post-list'
 export default function Index() {
   return (
     <div>
-        <div>
-        
-          <HeaderAdmin />
-        </div>
-        <div class="mainPage">
-          <div class="container-left">
-
-            <PersonBox1/>
-          </div>
-
-          <div class="container-right">
-          <PostList/>
-          {/* <!-- 文章列表 -->
-          {{template "post-list" .}}
-          <!-- pagination -->
-          {{template "pagination" .}} */}
-          </div>
-        </div>
+        <HeaderAdmin/>
+        <PostList/>
     </div>
   )
 }

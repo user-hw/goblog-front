@@ -7,13 +7,15 @@ import Index from "../pages/Index";
 import Test from "../pages/Test";
 import Post from "../pages/Post";
 
+import '../css/index.css';
+
 const  BaseRouter = () =>{
     return(
         <BrowserRouter>
         <Routes>
             <Route path="/" element={<Index />}></Route>
             <Route path="/login" element={<Login />}></Route>
-            <Route path="/home" element={<Home />}></Route>
+            <Route path="/home/:name" element={<Home />}></Route>
             <Route path="/list" element={<List />}></Route>
             <Route path="/detail" element={<Detail />}></Route>
             <Route path="/test/:name" element={<Test />}></Route>
