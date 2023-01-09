@@ -36,16 +36,16 @@ export default class Post extends React.Component {
     })
      .then(res =>res.json())
      .then((data) => {
-       console.log("data.data === ",data.data)  
+      //  console.log("data.data === ",data.data)  
        this.setState({
             post:data.data.post,
             userInfo:data.data.userInfo,
             test:"1"
        })
       })
-      console.log("this.state.post === ",this.state.post)
-      console.log("this.state.userInfo === ",this.state.userInfo)
-      console.log("this.state.test === ",this.state.test)
+      // console.log("this.state.post === ",this.state.post)
+      // console.log("this.state.userInfo === ",this.state.userInfo)
+      // console.log("this.state.test === ",this.state.test)
      } 
   
 

@@ -1,20 +1,81 @@
 import React from 'react'
+// import MD5 from 'MD5'
+
+import md5 from 'js-md5';
+React.Component.prototype.$md5 = md5;
+
+var SALT = "henryk"; // 加盐
+var TOKEN_KEY = "AUTH_TOKEN";
+var USER_KEY = "USER_INFO";
 
 export default class Login extends React.Component{
-  loginClick(params) {
-    console.log("调用了登录点击")
+  //初始化状态
+  state = {
+    username: "",
+    password:"",
+    md5Passwd: ""
   }
   
   render(){
     return (
-    <div class="login">
+    <div >
+      <form className="login" onSubmit={this.loginClick} method="post">
       <h1>登录</h1>
-      <input class="login-name" placeholder="请输入用户名" type="text" />
-      <input class="login-passwd" placeholder="请输入密码" type="password" />
+      <input onChange={this.handleUserName} class="login-name" placeholder="请输入用户名" type="text" />
+      <input onChange={this.handlePassword} class="login-passwd" placeholder="请输入密码" type="password" />
       <span class="login-tip"></span>
       <button class="login-submint" onClick={this.loginClick.bind(this)}>登录</button>
+      </form>
     </div>
   )}
+
+  //保存用户名
+  handleUserName = (e) => {
+    this.setState({
+        username: e.target.value
+    })
+    console.log(e.target.value);
+  }
+  //保存密码
+  handlePassword = (e) => {
+      this.setState({
+          password: e.target.value
+      })
+  }
+
+
+  loginClick = (e) => {
+    //该方法阻止表单的提交
+    e.preventDefault();
+    const {username,password} = this;
+    var MD5Passwd = md5(this.state.password + SALT);
+    
+    // alert('用户名：' + this.state.username + '，密码：' + this.state.password+ '，密码：' + MD5Passwd)
+
+
+    let queryStringRequest = new Request('http://139.186.213.52:8082/login/', {
+      method:  'POST',
+      body: JSON.stringify({
+        username: this.state.username,
+        MD5Passwd: MD5Passwd,
+     }),
+     
+    })
+    fetch(queryStringRequest)
+    .then(res =>res.json() )
+    .then((data) => {
+      if (data.code===200){
+        localStorage.setItem(TOKEN_KEY, data.token);
+        localStorage.setItem(USER_KEY, JSON.stringify(data.userInfo));
+
+        window.location.replace("/");
+      }else{
+        alert('账号或密码错误')
+      }
+       
+    })
+
+  }
 }
 
 // // 登录部分逻辑

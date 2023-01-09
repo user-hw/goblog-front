@@ -19,6 +19,7 @@ const  BaseRouter = () =>{
             <Route path="/list" element={<List />}></Route>
             <Route path="/detail" element={<Detail />}></Route>
             <Route path="/test/:name" element={<Test />}></Route>
+            <Route path="/test" element={<Test />}></Route>
             <Route path="/post/:pid" element={<Post />} ></Route>
         </Routes>
         </BrowserRouter >

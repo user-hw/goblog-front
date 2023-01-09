@@ -1,5 +1,46 @@
 import React from "react";
+import ReactDOM from 'react-dom'
 class HeaderAdmin extends React.Component{
+
+  constructor(props){
+    super(props)
+    this.state={
+        userName:"",
+
+    }
+  }
+  
+  componentDidMount(){
+    console.log("执行了函数logincheck")
+    if (localStorage.getItem(TOKEN_KEY)) {
+
+      let loginAction = document.querySelector('#loginAction');
+      loginAction.style.display = 'none';	// 隐藏选择的元素
+
+      let loginEnd = document.querySelector('.login-end');
+      loginEnd.style.display = 'block';	// 隐藏选择的元素
+
+      
+      var userInfo = JSON.parse(localStorage.getItem(USER_KEY))
+      this.setState({
+        userName:userInfo.userName,
+      })
+
+    }else{
+      let loginAction = document.querySelector('#loginAction');
+      loginAction.style.display = 'block';	// 隐藏选择的元素
+
+      let loginEnd = document.querySelector('.login-end');
+      loginEnd.style.display = 'none';	// 隐藏选择的元素
+      // console.log("没有找到token")
+      // window.location.replace("/login");
+      // console.log("退出登录");
+    }
+  }
+  
+  
+  
+  
   render(){
 
   return(   
@@ -171,31 +212,19 @@ class HeaderAdmin extends React.Component{
           </li>
 
 
-          <a class="login-action" href="/login">
+          <a className="login-action" id="loginAction" href="/login">
               <button class="login-btn" id="login-btn">登录</button>
           </a>
-          {/* <div class="login-end dropdown">
-              <p class="iconfont icon-yonghu">
-                  <span class="login-username dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></span>
-              </p>
 
-              <ul class=" login-drop  dropdown-menu">
-                  <li><a class="dropdown-item" href="/userinfo">用户信息</a></li>
-                  <li><a class="dropdown-item" href="/writing">写作</a></li>
-                  <li><a class="dropdown-item" href="/login-out">退出登录</a></li>
-              </ul>
-          </div>  */}
-
-          <li class="nav-item login-end  dropdown pe-3">
-
+          <li class="nav-item login-end  dropdown pe-3" >
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
               <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" />
-              <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+              <span class="d-none d-md-block dropdown-toggle ps-2">{this.state.userName}</span>
             </a>
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
               <li class="dropdown-header">
-                <h6>Kevin Anderson</h6>
+                <h6>{this.state.userName}</h6>
                 <span>Web Designer</span>
               </li>
               <li>
@@ -261,22 +290,8 @@ function LoginOut(){
 
 var TOKEN_KEY = "AUTH_TOKEN";
 var USER_KEY = "USER_INFO";
-function LoginCheck(){
-  console.log("执行了函数logincheck")
-  if (localStorage.getItem(TOKEN_KEY)) {
-    // $(".login-action").show();
-    // $(".login-end").hide();
-    console.log(localStorage.getItem(USER_KEY))
-    // setState({
-    //   login:"a",
-    // })
-  }else{
-    console.log("没有找到token")
-    // window.location.replace("/login");
-    console.log("退出登录");
-  }
-}
-LoginCheck()
+
+// LoginCheck()
 
 
 // var script = document.createElement('script');
