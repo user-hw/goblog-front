@@ -13,7 +13,9 @@ export default function Index() {
         <HeaderAdmin/>
       </div>
       <br />
-      <div style={{"top":"120px","position": "static"}}>
+      <div >
+        <PostEelment />
+        <PostEelment />
         <PostEelment />
       </div>
         
