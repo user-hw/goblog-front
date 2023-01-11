@@ -48,7 +48,7 @@ class HeaderAdmin extends React.Component{
   return(   
 
     <div> 
-    <header id="header" class="header fixed-top d-flex align-items-center">       
+    <header id="header" class="header d-flex align-items-center">       
       <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
           <img src="assets/img/logo.png" alt="" />
