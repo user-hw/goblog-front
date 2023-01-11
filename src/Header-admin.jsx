@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from 'react-dom'
+import imgURL from './img/3.jpg';
 class HeaderAdmin extends React.Component{
 
   constructor(props){
     super(props)
     this.state={
         userName:"",
+        // avatar:  require.context("img/3.jpg" true);
 
     }
   }
@@ -215,10 +217,10 @@ class HeaderAdmin extends React.Component{
           <a className="login-action" id="loginAction" href="/login">
               <button class="login-btn" id="login-btn">登录</button>
           </a>
-
+ 
           <li class="nav-item login-end  dropdown pe-3" >
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" />
+              <img src={require('./img/3.jpg')} alt="Profile" className="rounded-circle" />
               <span class="d-none d-md-block dropdown-toggle ps-2">{this.state.userName}</span>
             </a>
 
