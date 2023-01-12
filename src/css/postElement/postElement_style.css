@@ -543,7 +543,10 @@ img {
 .single-blog-area {
   position: relative;
   z-index: 1;
-padding: 10px 30px; }
+  
+  /* margin: 0px auto 15px auto; */
+  /* width: 80%; */
+ }
   .single-blog-area .single-blog-thumbnail {
     position: relative;
     z-index: 1; }

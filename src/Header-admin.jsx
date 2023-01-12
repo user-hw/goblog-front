@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from 'react-dom'
 import imgURL from './img/3.jpg';
-class HeaderAdmin extends React.Component{
 
+class HeaderAdmin extends React.Component{
+  
   constructor(props){
     super(props)
     this.state={

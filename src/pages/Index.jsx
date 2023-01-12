@@ -6,6 +6,7 @@ import PostList from '../Post-list'
 import PostEelment from '../PostElement'
 
 
+
 export default function Index() {
   return (
     <div>
@@ -13,7 +14,7 @@ export default function Index() {
         <HeaderAdmin/>
       </div>
       <br />
-      <div >
+      <div  className='IndexPageList'>
         <PostEelment />
         <PostEelment />
         <PostEelment />

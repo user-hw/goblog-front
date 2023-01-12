@@ -324,11 +324,14 @@ header {
 }
 /* CONTAINER */
 
-.mainPage{
-  display: flex;
+.IndexPageList{
+  /* display: flex; */
   width: 1200px;
-  margin: 0 auto;
-  padding: 20px 0;
+  margin: 80px auto 0 auto;
+  padding: 10px 30px;
+
+
+  /* padding: 20px 0; */
 
 }
 .container-left {
@@ -605,7 +608,7 @@ footer a {
 
 @media (max-width: 1260px) {
 
-  .mainPage{
+  .IndexPageList{
     width: 100%;
     padding-left: 30px;
     padding-right: 30px;
