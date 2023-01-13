@@ -2,7 +2,7 @@ import React from "react";
 import "./css/postElement/postElement_style.css"
 import "./css/postElement/myStyle.css"
 
-class PostEelment extends React.Component {
+class PostElment extends React.Component {
     state = {  } 
     render() { 
         return (
@@ -38,4 +38,4 @@ class PostEelment extends React.Component {
     }
 }
  
-export default PostEelment;
+export default PostElment;
