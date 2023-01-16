@@ -9,6 +9,10 @@ import PostElment from '../PostElement'
 import request from 'superagent';
 import debounce from 'lodash.debounce';
 
+import { useHistory,useLocation } from 'react-router-dom';
+
+
+
 
 
 export default class Index extends React.Component {
@@ -19,7 +23,10 @@ export default class Index extends React.Component {
       quantity : 5,
 			post_list: [
       ],
+      page:1,
 		};
+
+
 
     window.onscroll = debounce(() => {
       const {
@@ -28,25 +35,49 @@ export default class Index extends React.Component {
   
       if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
         this.load();
+        this.state.page +=1
+        console.log(this.state.page)
       }
     }, 100);
 	}
 
   componentDidMount(){
     this.load()
+
+    // const history = useHistory();
+    // const item = {id:1,name:"zora"}
+    // 路由跳转
+    // history.push(`/user/role/detail`, { id: item });
+    // 参数获取
+    // const {state} = useLocation()
+    // console.log(state)  // {id:1,name:"zora"}
   }
 
   load(){
     console.log("调用了load")
     let a =this.state.post_list
-    for (let index = 0; index < 5; index++) {
-      a.push({post:1})
-    }
-    console.log(a)
-
-    this.setState({
-      post_list: a,
+    const url = "http://139.186.213.52:8082/post?pageNum=3&postNum=5"
+    fetch(url,{
+      method:'GET',
     })
+    .then(res =>res.json())
+    .then((data) => {
+      console.log("data.data === ",data.data)  
+    //  this.setState({
+    //       post:data.data.post,
+    //       userInfo:data.data.userInfo,
+    //       test:"1"
+    //  })
+    })
+     } 
+    // for (let index = 0; index < 5; index++) {
+    //   a.push({post:1})
+    // }
+    // console.log(a)
+
+    // this.setState({
+    //   post_list: a,
+    // })
     // console.log("this.state.post_list ==== ",this.state)
     
     // const postElement = document.createElement('PostElment');
@@ -55,7 +86,7 @@ export default class Index extends React.Component {
     // title.className='main';
     // document.getElementById('Index').appendChild(postElement);
     // ReactDOM.render(postElement, document.getElementById('Index'));
-  }
+  // }
   
 
 
@@ -67,7 +98,7 @@ export default class Index extends React.Component {
         <HeaderAdmin/>
       </div>
       <br />
-      <div id='indexPageList' className='IndexPageList'>
+      <div id='MainPage' className='MainPage'>
 
       {/* <React.Fragment>
               <p>{this.state.post_list}</p>

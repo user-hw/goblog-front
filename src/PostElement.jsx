@@ -32,8 +32,6 @@ class PostElment extends React.Component {
                     </div>
                 </div>
             </div>
-
-
         );
     }
 }

@@ -324,7 +324,7 @@ header {
 }
 /* CONTAINER */
 
-.IndexPageList{
+.MainPage{
   /* display: flex; */
   width: 1200px;
   margin: 80px auto 0 auto;
@@ -608,7 +608,7 @@ footer a {
 
 @media (max-width: 1260px) {
 
-  .IndexPageList{
+  .MainPage{
     width: 100%;
     padding-left: 30px;
     padding-right: 30px;
