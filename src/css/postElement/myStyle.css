@@ -3,3 +3,27 @@
     border-radius: 5px;
     box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.1);
 }
+
+#d1{
+    width:100px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -webkit-text-overflow:ellipsis;
+}
+
+#d2{
+    /* width:50px; */
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -webkit-text-overflow:ellipsis;
+}
+#d3{
+    /* width:50px; */
+    margin-left: 15px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -webkit-text-overflow:ellipsis;
+}

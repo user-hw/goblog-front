@@ -21,7 +21,7 @@ class HeaderAdmin extends React.Component{
       loginAction.style.display = 'none';	// 隐藏选择的元素
 
       let loginEnd = document.querySelector('.login-end');
-      loginEnd.style.display = 'block';	// 隐藏选择的元素
+      loginEnd.style.display = 'block';	// 显示选择的元素
 
       
       var userInfo = JSON.parse(localStorage.getItem(USER_KEY))

@@ -11,19 +11,19 @@ import debounce from 'lodash.debounce';
 
 import { useHistory,useLocation } from 'react-router-dom';
 
-
-
+import axios from 'axios'
 
 
 export default class Index extends React.Component {
   constructor(props) {
 		super(props);
 		this.state = {
-      counter : 1,
-      quantity : 5,
 			post_list: [
       ],
-      page:1,
+      pageNum:1,
+      postNum:5,
+      // pageAllNum:2,
+      // isBottom:false,
 		};
 
 
@@ -32,44 +32,70 @@ export default class Index extends React.Component {
       const {
         load
       } = this;
+      // this.isBottom()
   
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight && this.isBottom()===false ) {
+        this.state.pageNum +=1
         this.load();
-        this.state.page +=1
-        console.log(this.state.page)
+        
+        console.log("this.state.pageNum ===",this.state.pageNum)
       }
     }, 100);
 	}
 
   componentDidMount(){
     this.load()
-
-    // const history = useHistory();
-    // const item = {id:1,name:"zora"}
-    // 路由跳转
-    // history.push(`/user/role/detail`, { id: item });
-    // 参数获取
-    // const {state} = useLocation()
-    // console.log(state)  // {id:1,name:"zora"}
   }
+
+  isBottom(){
+    if (this.state.pageNum<=4){
+      return false
+    }else{
+      return true
+    }
+  }
+  
 
   load(){
     console.log("调用了load")
-    let a =this.state.post_list
-    const url = "http://139.186.213.52:8082/post?pageNum=3&postNum=5"
-    fetch(url,{
-      method:'GET',
+    // let a =this.state.post_list
+    const url = "http://139.186.213.52:8082/post"
+    axios({
+      method: 'get',
+      url: url,
+      params:{
+        pageNum:this.state.pageNum,
+        postNum:this.state.postNum,
+      }
     })
-    .then(res =>res.json())
+    .then(res =>res.data)
     .then((data) => {
-      console.log("data.data === ",data.data)  
-    //  this.setState({
-    //       post:data.data.post,
-    //       userInfo:data.data.userInfo,
-    //       test:"1"
-    //  })
+      console.log(data.data);
+      this.setState({
+        post_list: this.state.post_list.concat(data.data),
+      })
     })
-     } 
+    .catch((error) => {
+      console.log(error)
+    })
+    setTimeout(() => {
+            console.log(this.state.post_list);
+      }, 1000); 
+
+
+    // fetch(url,{
+    //   method:'GET',
+    // })
+    // .then(res =>res.json())
+    // .then((data) => {
+    //   // console.log("data.data === ",data.data)  
+    // //  this.setState({
+    // //       post:data.data.post,
+    // //       userInfo:data.data.userInfo,
+    // //       test:"1"
+    // //  })
+    // })
+} 
     // for (let index = 0; index < 5; index++) {
     //   a.push({post:1})
     // }
@@ -100,13 +126,11 @@ export default class Index extends React.Component {
       <br />
       <div id='MainPage' className='MainPage'>
 
-      {/* <React.Fragment>
-              <p>{this.state.post_list}</p>
-          </React.Fragment> */}
       {this.state.post_list.map((item, index) => {
 						return (
-                <PostElment />
+                <PostElment data={item}/>
 						)})}
+      {/* <h1>啊哦，已经到底了</h1> */}
 
       </div>
         
