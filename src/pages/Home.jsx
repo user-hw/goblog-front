@@ -2,6 +2,7 @@ import React from 'react'
 import HeaderAdmin from '../Header-admin'
 import PersonBox1 from '../Person-box1'
 import PostList from '../Post-list'
+import Index from './Index'
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         
         <HeaderAdmin />
       </div>
-      <div class="mainPage">
+      <div  className='MainPage HomePage'>
         <div class="container-left">
 
           <PersonBox1/>
@@ -18,10 +19,8 @@ export default function Home() {
 
         <div class="container-right">
         <PostList/>
-        {/* <!-- 文章列表 -->
-        {{template "post-list" .}}
-        <!-- pagination -->
-        {{template "pagination" .}} */}
+
+          
         </div>
       </div>
     </div>

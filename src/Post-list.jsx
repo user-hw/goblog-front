@@ -1,86 +1,86 @@
 import React from 'react'
 import './css/index.css';
+import axios from 'axios'
+import PostElment from './PostElement';
 
+/*
+分页还没有做，这一部分准备做传统分页
+*/
 
 export default class PostList extends React.Component{
   constructor(props){
     super(props)
-    this.state={
-        post:[],
-        // pid: 0,
-        // title: "0",
-        // slug: "0",
-        // content: "",
-        // markdown: "",
-        // categoryId:0,
-        // userId:0,
-        // viewCount:0,
-        // type:0,
-        // createAt:"",
-        // updateAt:"",
-    }
+    this.state = {
+      post_list: [
+      ],
+      pageNum:1,
+      postNum:5,
+    };
   }
   
 
   componentDidMount(){
-    fetch('http://139.186.213.52:8082/post/',{
-      method:'GET',
+
+    console.log("调用了load")
+    // let a =this.state.post_list
+    const url = "http://139.186.213.52:8082/post"
+    axios({
+      method: 'get',
+      url: url,
+      params:{
+        pageNum:this.state.pageNum,
+        postNum:this.state.postNum,
+      }
     })
-     .then(res =>res.json())
-     .then((data) => {
-       console.log(data.data)  
-       this.setState({
-            post:data.data
-       })
-      // ,function(){
-      //    console.log(this.state.test)
-      //    let com = this.state.test.retBody.map((item,index)=>{
-      //      console.log(item.id)
-      //      return <li key={index}>{item.name}</li>
-      //    })
-      //    this.setState({
-      //      arr : com
-      //    },function(){
-      //      console.log(this.state.arr)
-      //    })
-      //  })
-     }) 
+    .then(res =>res.data)
+    .then((data) => {
+      console.log(data.data);
+      this.setState({
+        post_list: this.state.post_list.concat(data.data),
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    setTimeout(() => {
+            console.log(this.state.post_list);
+      }, 1000); 
   }
+
+  //   fetch('http://139.186.213.52:8082/post/',{
+  //     method:'GET',
+  //   })
+  //    .then(res =>res.json())
+  //    .then((data) => {
+  //      console.log(data.data)  
+  //      this.setState({
+  //           post:data.data
+  //      })
+  //     // ,function(){
+  //     //    console.log(this.state.test)
+  //     //    let com = this.state.test.retBody.map((item,index)=>{
+  //     //      console.log(item.id)
+  //     //      return <li key={index}>{item.name}</li>
+  //     //    })
+  //     //    this.setState({
+  //     //      arr : com
+  //     //    },function(){
+  //     //      console.log(this.state.arr)
+  //     //    })
+  //     //  })
+  //    }) 
+  // }
 
 
   render(){
     return (
       <div>
-        <ul class="post-box">
+        <ul className="post-box">
             {
-              this.state.post.map(function (value, key) {
+              this.state.post_list.map(function (item, key) {
                   return (
                       <li key={key}>
-                          <a href={"/post/"+value.pid}>
-                              <h2>{value.title}</h2>
-                          </a>
-                          <p dangerouslySetInnerHTML = {{ __html: value.content }} />
-                          {/* <p>{value.content}</p> */}
-
-                          <div class="post-action">
-                            
-                            <span>
-                              <i class="iconfont icon-yonghu"></i>
-                              &nbsp; {"value.userName"}
-                            </span>
-                            <span>
-                              <i class="iconfont icon-wenjianjia"></i>
-                              &nbsp;<a href="#">{value.categoryId}</a>
-                            </span>
-                            <span>
-                              <i class="iconfont icon-riqi"></i>
-                              &nbsp;{value.createAt}
-                            </span>
-                            <span>
-                              <i class="iconfont icon-yanjing"></i>
-                              &nbsp;{value.updateAt}
-                            </span>
-                          </div>
+                          <PostElment data={item}/>
                       </li>
                   );
               })

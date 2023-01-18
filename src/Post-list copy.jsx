@@ -1,104 +1,111 @@
 import React from 'react'
 import './css/index.css';
+import axios from 'axios'
 
 
-  // function PersonBox() {
-  //   console.log("调用执行了这个函数"+"GetInfo")
-  //   console.log("data1",data)
-    // setState({
-    //   data:data,
-    // }
-    // )
-    // console.log(state)
-
-    // var data = data.data
-    // console.log("data2",data)
-export default class PersonBox1 extends React.Component{
+export default class PostList extends React.Component{
   constructor(props){
     super(props)
-    this.state={
-      avatar: "/resource/images/1.jpg",
-      userName: "0",
-      userDesc: "0",
-      bilibili: "https://space.bilibili.com/66628849",
-      zhihu: "https://www.zhihu.com/people/xu-heng-wei-63",
-      github:"",
-    }
+    this.state = {
+      post_list: [
+      ],
+      pageNum:1,
+      postNum:5,
+    };
   }
   
 
   componentDidMount(){
-    const username = window.location.href.split('/').slice(-1)
-    let url = 'http://139.186.213.52:8082/page/userinfo/'+username
-    fetch(url,{
-      method:'GET',
+
+    console.log("调用了load")
+    // let a =this.state.post_list
+    const url = "http://139.186.213.52:8082/post"
+    axios({
+      method: 'get',
+      url: url,
+      params:{
+        pageNum:this.state.pageNum,
+        postNum:this.state.postNum,
+      }
     })
-     .then(res =>res.json())
-     .then((data) => {
-       console.log(data)  
-       this.setState({
-        avatar:data.data[0].avatar,
-        userName: data.data[0].userName,
-        userDesc: data.data[0].userDesc,
-        bilibili: data.data[0].bilibili,
-        zhihu: data.data[0].zhihu,
-        github:data.data[0].github,
-       })
-      // ,function(){
-      //    console.log(this.state.test)
-      //    let com = this.state.test.retBody.map((item,index)=>{
-      //      console.log(item.id)
-      //      return <li key={index}>{item.name}</li>
-      //    })
-      //    this.setState({
-      //      arr : com
-      //    },function(){
-      //      console.log(this.state.arr)
-      //    })
-      //  })
-     }) 
+    .then(res =>res.data)
+    .then((data) => {
+      console.log(data.data);
+      this.setState({
+        post_list: this.state.post_list.concat(data.data),
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+    setTimeout(() => {
+            console.log(this.state.post_list);
+      }, 1000); 
   }
 
-
-  // constructor(){
-    // console.log("aaaaaaaaaaaaaaaa")
-  //   let url = 'http://139.186.213.52:8082/page/userinfo/henryk'
-  //   fetch(url, {
-  //     method: 'GET',
-  //   }).then(response => response.json()).then(data => {
-  //     if (data === null) {
-  //       window.alert("根据此id查询不到用户")
-  //       console.log("查询失败")
-  //       return
-  //     }
-  //     // updateState(data)
-  //     console.log("调用了fetch")
+  //   fetch('http://139.186.213.52:8082/post/',{
+  //     method:'GET',
   //   })
+  //    .then(res =>res.json())
+  //    .then((data) => {
+  //      console.log(data.data)  
+  //      this.setState({
+  //           post:data.data
+  //      })
+  //     // ,function(){
+  //     //    console.log(this.state.test)
+  //     //    let com = this.state.test.retBody.map((item,index)=>{
+  //     //      console.log(item.id)
+  //     //      return <li key={index}>{item.name}</li>
+  //     //    })
+  //     //    this.setState({
+  //     //      arr : com
+  //     //    },function(){
+  //     //      console.log(this.state.arr)
+  //     //    })
+  //     //  })
+  //    }) 
   // }
+
+
   render(){
     return (
-      <div className='personal'>
-        <div class="personal-box">
-         <img class="personal-avatar" style={{"object-fit":"cover"}} src={this.state.avatar} alt={this.state.UserName} />
-         <p class="personal-name">{this.state.userName}</p>
-         <p class="personal-desc">{this.state.userDesc}</p>
-         <span class="gap-dashed"></span>
-         <ul class="personal-action">
-           <li>
-             <i class="iconfont icon-github"></i>
-             <a href={this.state.github} target="_blank"> github</a>
-           </li>
-           <li>
-             <i class="iconfont icon-bilibili-line"></i>
-             <a href={this.state.bilibili} target="_blank"> Bilibili</a>
-           </li>
-           <li>
-             <i class="iconfont icon-zhihu-circle"></i>
-             <a href={this.state.zhihu} target="_blank"> 知乎</a>
-           </li>
-         </ul>
-         <span class="gap-solid"></span>
-       </div>
+      <div>
+        <ul className="post-box">
+            {
+              this.state.post_list.map(function (value, key) {
+                  return (
+                      <li key={key}>
+                          <a href={"/post/"+value.blogPost.pid}>
+                              <h2>{value.blogPost.title}</h2>
+                          </a>
+                          <p dangerouslySetInnerHTML = {{ __html: value.blogPost.content }} />
+                          {/* <p>{value.content}</p> */}
+
+                          <div class="post-action">
+                            
+                            <span>
+                              <i class="iconfont icon-yonghu"></i>
+                              &nbsp; {"value.userName"}
+                            </span>
+                            <span>
+                              <i class="iconfont icon-wenjianjia"></i>
+                              &nbsp;<a href="#">{value.categoryId}</a>
+                            </span>
+                            <span>
+                              <i class="iconfont icon-riqi"></i>
+                              &nbsp;{value.blogPost.createAt}
+                            </span>
+                            <span>
+                              <i class="iconfont icon-yanjing"></i>
+                              &nbsp;{value.blogPost.updateAt}
+                            </span>
+                          </div>
+                      </li>
+                  );
+              })
+            }
+        </ul>
       </div>
   )}
 }

@@ -31,11 +31,11 @@ class PostElment extends React.Component {
                         <div class="single-blog-content">
                             <div class="line"></div>
                             <a href="#" class="post-tag">Lifestyle</a>
-                            <h4><a href="#" class="post-headline">{this.props.data.blogPost.title}</a></h4>
+                            <h4><a href={"/post/" +this.props.data.blogPost.pid}class="post-headline">{this.props.data.blogPost.title}</a></h4>
                             {/* <p>{this.props.data.blogPost.content}</p> */}
                             <p dangerouslySetInnerHTML = {{ __html: this.props.data.blogPost.content}} />
                             <div class="post-meta">
-                                <p id="d1">By <a href="#">{this.props.data.NickName}</a></p>
+                                <p id="d1">By <a href={"/home/"+this.props.data.userName}>{this.props.data.NickName}</a></p>
                                 <p id="d2">3 comments</p>
                                 <p id="d3">50 views</p>
                             </div>

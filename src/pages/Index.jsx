@@ -13,6 +13,11 @@ import { useHistory,useLocation } from 'react-router-dom';
 
 import axios from 'axios'
 
+/*遗留问题
+滑动到底后显示已经到底的标识
+
+*/
+
 
 export default class Index extends React.Component {
   constructor(props) {
@@ -22,8 +27,6 @@ export default class Index extends React.Component {
       ],
       pageNum:1,
       postNum:5,
-      // pageAllNum:2,
-      // isBottom:false,
 		};
 
 
@@ -39,6 +42,11 @@ export default class Index extends React.Component {
         this.load();
         
         console.log("this.state.pageNum ===",this.state.pageNum)
+      }else if (this.isBottom()===true ){
+        console.log("已经到底了")
+  
+        let loginEnd = document.querySelector('.isBottom');
+        loginEnd.style.display = 'block';	// 显示选择的元素
       }
     }, 100);
 	}
@@ -81,42 +89,7 @@ export default class Index extends React.Component {
     setTimeout(() => {
             console.log(this.state.post_list);
       }, 1000); 
-
-
-    // fetch(url,{
-    //   method:'GET',
-    // })
-    // .then(res =>res.json())
-    // .then((data) => {
-    //   // console.log("data.data === ",data.data)  
-    // //  this.setState({
-    // //       post:data.data.post,
-    // //       userInfo:data.data.userInfo,
-    // //       test:"1"
-    // //  })
-    // })
-} 
-    // for (let index = 0; index < 5; index++) {
-    //   a.push({post:1})
-    // }
-    // console.log(a)
-
-    // this.setState({
-    //   post_list: a,
-    // })
-    // console.log("this.state.post_list ==== ",this.state)
-    
-    // const postElement = document.createElement('PostElment');
-    // console.log(postElement)
-    // title.innerText='Hello React (method 1)';
-    // title.className='main';
-    // document.getElementById('Index').appendChild(postElement);
-    // ReactDOM.render(postElement, document.getElementById('Index'));
-  // }
-  
-
-
- 
+}  
   render(){
   return (
     <div>
@@ -130,39 +103,10 @@ export default class Index extends React.Component {
 						return (
                 <PostElment data={item}/>
 						)})}
-      {/* <h1>啊哦，已经到底了</h1> */}
-
+      
       </div>
-        
-        {/* <PostList/> */}
+      <p id='isBottom' style={{"display":"none"}}>啊哦，已经到底了</p>
     </div>
   )
   }
 }
-
-// let counter = 1;
-
-// const quantity = 5;
-
-// document.addEventListener("DOMContentLoaded",load)
-
-// function load(){
-//   console.log("调用了load")
-//   const start = counter
-//   const end = start+quantity-1;
-//   counter = end+1 
-//   for (let index = 0; index < counter; index++) {
-//     add_post()
-    
-//   }
-// }
-
-// function add_post(){
-//   console.log("调用了addpost")
-//   const postElement = document.createElement('PostElment');
-//   console.log(postElement)
-//   // title.innerText='Hello React (method 1)';
-//   // title.className='main';
-//   // document.getElementById('Index').appendChild(postElement);
-//   ReactDOM.render(postElement, document.getElementById('Index'));
-// }

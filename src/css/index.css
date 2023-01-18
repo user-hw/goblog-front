@@ -329,11 +329,12 @@ header {
   width: 1200px;
   margin: 80px auto 0 auto;
   padding: 10px 30px;
-
-
-  /* padding: 20px 0; */
-
 }
+.HomePage{
+  display: flex;
+}
+
+
 .container-left {
   width: 220px;
 
