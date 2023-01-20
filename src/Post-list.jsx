@@ -30,6 +30,7 @@ export default class PostList extends React.Component{
       params:{
         pageNum:this.state.pageNum,
         postNum:this.state.postNum,
+        uid:1001,
       }
     })
     .then(res =>res.data)
@@ -47,29 +48,6 @@ export default class PostList extends React.Component{
       }, 1000); 
   }
 
-  //   fetch('http://139.186.213.52:8082/post/',{
-  //     method:'GET',
-  //   })
-  //    .then(res =>res.json())
-  //    .then((data) => {
-  //      console.log(data.data)  
-  //      this.setState({
-  //           post:data.data
-  //      })
-  //     // ,function(){
-  //     //    console.log(this.state.test)
-  //     //    let com = this.state.test.retBody.map((item,index)=>{
-  //     //      console.log(item.id)
-  //     //      return <li key={index}>{item.name}</li>
-  //     //    })
-  //     //    this.setState({
-  //     //      arr : com
-  //     //    },function(){
-  //     //      console.log(this.state.arr)
-  //     //    })
-  //     //  })
-  //    }) 
-  // }
 
 
   render(){
