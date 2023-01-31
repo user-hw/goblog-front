@@ -32,42 +32,6 @@ function MyEditor(props) {
         MENU_CONF: {}
     }
 
-
-
-    //   // 异步获取临时密钥
-    //   $.ajax({
-    //     url: "/api/v1/qiniu/token",
-    //     type: "GET",
-    //     contentType: "application/json",
-    //     success: function (res) {
-    //       if (res.code !== 200) {
-    
-    //         return alert(res.error);
-    //       }
-    //       const token = res.data;
-    //       console.log(token)
-    //       const observable = qiniu.upload(file, Date.now() + "_" + file.name, token, putExtra, config)
-    //       const observer = {
-    //         next(res){
-    //           // ...
-    //         },
-    //         error(err){
-    //           console.log('出现错误')
-    //           console.log(err)
-    //         },
-    //         complete(res){
-    //           console.log(res)
-    //           cb("rmyppzaaw.hd-bkt.clouddn.com/" + res.key)
-    //         }
-    //       }
-    //       const subscription = observable.subscribe(observer) // 上传开始
-    
-    //     },
-    //     beforeSend: setAjaxToken,
-    //   });
-
-
-
     editorConfig.MENU_CONF['uploadImage'] = {
         server: 'http://139.186.213.52:8082/api/upload/img',
         
@@ -81,45 +45,36 @@ function MyEditor(props) {
             };
             const putExtra = {
             };
-            const token= "BzTAVlqDQe3Cyq9Tu9sGYcp1e7K0Y8dx2vGY3faP:1l6oHM4uGRo-aBXOduDBqigzl3o=:eyJzY29wZSI6ImltZy1zdG9yZS1uZXciLCJkZWFkbGluZSI6MTY3NTE4MTEwNH0="
 
-            const observable = qiniu.upload(file, Date.now() + "_" + file.name, token, putExtra, config)
-            const observer = {
-                next(res){
-                  // ...
-                },
-                error(err){
-                  console.log('出现错误')
-                  console.log(err)
-                },
-                complete(res){
-                  console.log(res)
-                //   cb("rmyppzaaw.hd-bkt.clouddn.com/" + res.key)
-                const url ="http://rpcq12gz9.hd-bkt.clouddn.com/"+res.key
-                // const url="http://rpcq12gz9.hd-bkt.clouddn.com/1675174426308_1.jfif?token=BzTAVlqDQe3Cyq9Tu9sGYcp1e7K0Y8dx2vGY3faP:E3fuoLoa-9Fb_89cqnUJawX3BaU="
-                insertFn(url, "", "")
+            const qiniuUrl = "http://139.186.213.52:8082/api/qiniu"
+            axios({
+                method: 'get',
+                url: qiniuUrl,
+            })
+            .then(res =>res.data)
+            .then((data) => {
+                // console.log(data)
+                if(data.code===200){
+                    const token= data.upToken
+                    const observable = qiniu.upload(file, Date.now() + "_" + file.name, token, putExtra, config)
+                    const observer = {
+                        next(res){
+                        // ...
+                        },
+                        error(err){
+                        console.log('出现错误')
+                        console.log(err)
+                        },
+                        complete(res){
+                        console.log(res)
+                        const url ="http://rpcq12gz9.hd-bkt.clouddn.com/"+res.key
+                        insertFn(url, "", "")
+                        }
+                    }
+                    const subscription = observable.subscribe(observer) // 上传开始  
                 }
-              }
-            const subscription = observable.subscribe(observer) // 上传开始
-            console.log('subscription ===',observable)
-            
-            
-            // file 即选中的文件
-            // 自己实现上传，并得到图片 url alt href
-            // 最后插入图片
-            
+            })       
         }
-        
-        
-        // // 自定义插入图片
-        // customInsert(res, insertFn) {                  // JS 语法
-        //     // res 即服务端的返回结果
-        //     console.log("res === ",res)
-
-    
-        //     // 从 res 中找到 url alt href ，然后插入图片
-        //     // insertFn(url, alt, href)
-        // },
     }
 
     // 及时销毁 editor ，重要！
@@ -176,7 +131,7 @@ function MyEditor(props) {
     return (
         <>
 
-        <input class="header-input" placeholder="请输入标题..." onBlur={handleTitle} type="text" />
+        <input class="header-input" placeholder="请输入标题..." onChange={handleTitle} type="text" />
             <div style={{ border: '1px solid #ccc', zIndex: 100}} >
                 <Toolbar
                     editor={editor}
