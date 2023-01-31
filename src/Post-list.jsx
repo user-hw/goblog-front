@@ -2,6 +2,7 @@ import React from 'react'
 import './css/index.css';
 import axios from 'axios'
 import PostElment from './PostElement';
+import Pagination from './Pagination';
 
 /*
 分页还没有做，这一部分准备做传统分页
@@ -15,13 +16,17 @@ export default class PostList extends React.Component{
       ],
       pageNum:1,
       postNum:5,
+      pageCount:[],
     };
   }
   
 
   componentDidMount(){
+    this.load()
+  }
 
-    console.log("调用了load")
+  load(){
+  console.log("调用了load")
     // let a =this.state.post_list
     const url = "http://139.186.213.52:8082/post"
     axios({
@@ -36,23 +41,42 @@ export default class PostList extends React.Component{
     .then(res =>res.data)
     .then((data) => {
       console.log(data.data);
+
+      let pageCount=[]
+      for (let index = 0; index < data.data[0].pageCount; index++) {
+        pageCount.push(index+1);
+        
+      }
       this.setState({
         post_list: this.state.post_list.concat(data.data),
+        pageCount: pageCount,
+
       })
     })
     .catch((error) => {
       console.log(error)
     })
     setTimeout(() => {
-            console.log(this.state.post_list);
-      }, 1000); 
+            console.log('data.data.pageCount === ',this.state.pageCount);
+      }, 1000);           
   }
 
+  changePage=(value)=>{
+    console.log("修改页面111")
+    this.setState({
+      pageNum: value,
+      post_list:[]
+    })
+    setTimeout(() => {
+      this.load();
+    }, 50); 
+  }
 
 
   render(){
     return (
       <div>
+        
         <ul className="post-box">
             {
               this.state.post_list.map(function (item, key) {
@@ -64,6 +88,7 @@ export default class PostList extends React.Component{
               })
             }
         </ul>
+        <Pagination pageNum={this.state.pageNum} pageCount={this.state.pageCount} changePage={this.changePage}/>
       </div>
   )}
 }
