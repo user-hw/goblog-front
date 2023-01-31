@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from '@feb-team/legao-react';
+import '@feb-team/legao-react/dist/styles/css/legao.all.css';
 
 class Pagination extends React.Component {
     constructor(props){
@@ -37,6 +39,9 @@ class Pagination extends React.Component {
                         </li>
                     </ul>
                     </nav>
+                    <div>
+    <Button type="info">Button</Button>
+  </div>
             </div>
         );
     }

@@ -2,10 +2,12 @@ import React from 'react'
 import './css/index.css';
 import axios from 'axios'
 import PostElment from './PostElement';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
+import { Pagination } from '@feb-team/legao-react';
+import '@feb-team/legao-react/dist/styles/css/legao.all.css';
 
 /*
-分页还没有做，这一部分准备做传统分页
+存在一个bug，页面数量显示不出来，很奇怪，没发现为什么
 */
 
 export default class PostList extends React.Component{
@@ -16,7 +18,7 @@ export default class PostList extends React.Component{
       ],
       pageNum:1,
       postNum:5,
-      pageCount:[],
+      pageCount:5,
     };
   }
   
@@ -41,16 +43,9 @@ export default class PostList extends React.Component{
     .then(res =>res.data)
     .then((data) => {
       console.log(data.data);
-
-      let pageCount=[]
-      for (let index = 0; index < data.data[0].pageCount; index++) {
-        pageCount.push(index+1);
-        
-      }
       this.setState({
         post_list: this.state.post_list.concat(data.data),
-        pageCount: pageCount,
-
+        pageCount: data.data[0].pageCount,
       })
     })
     .catch((error) => {
@@ -76,7 +71,6 @@ export default class PostList extends React.Component{
   render(){
     return (
       <div>
-        
         <ul className="post-box">
             {
               this.state.post_list.map(function (item, key) {
@@ -88,7 +82,8 @@ export default class PostList extends React.Component{
               })
             }
         </ul>
-        <Pagination pageNum={this.state.pageNum} pageCount={this.state.pageCount} changePage={this.changePage}/>
+        <Pagination style={{"text-align": "right","inlineSize":"50px"}} total={5} current={1} pageSize={1} onChange={this.changePage} />
+        {/* <Pagination pageNum={this.state.pageNum} pageCount={this.state.pageCount} changePage={this.changePage}/> */}
       </div>
   )}
 }
