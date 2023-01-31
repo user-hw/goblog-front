@@ -67,7 +67,7 @@ export default class Login extends React.Component{
       if (data.code===200){
         localStorage.setItem(TOKEN_KEY, data.token);
         localStorage.setItem(USER_KEY, JSON.stringify(data.userInfo[0]));
-        console.log("JSON.stringify(data.userInfo===",JSON.stringify(data.userInfo[0]))
+        // console.log("JSON.stringify(data.userInfo===",JSON.stringify(data.userInfo[0]))
 
         window.location.replace("/");
       }else{

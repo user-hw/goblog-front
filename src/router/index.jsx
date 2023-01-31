@@ -6,6 +6,7 @@ import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Index from "../pages/Index";
 import Test from "../pages/Test";
 import Post from "../pages/Post";
+import Writing from "../pages/Writing";
 
 import '../css/index.css';
 
@@ -21,6 +22,7 @@ const  BaseRouter = () =>{
             <Route path="/test/:name" element={<Test />}></Route>
             <Route path="/test" element={<Test />}></Route>
             <Route path="/post/:pid" element={<Post />} ></Route>
+            <Route path="/writing" element={<Writing />} ></Route>
         </Routes>
         </BrowserRouter >
 
