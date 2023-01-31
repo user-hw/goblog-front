@@ -19,7 +19,7 @@ function MyEditor(props) {
     // 模拟 ajax 请求，异步设置 html
     useEffect(() => {
         setTimeout(() => {
-            setHtml('<p>hello world</p>')
+            setHtml('')
         }, 1500)
     }, [])
 
@@ -45,12 +45,20 @@ function MyEditor(props) {
     const handleTitle=(e)=>{
         setTimeout(() => {
             setTitle(e.target.value)
-        }, 500)
+        }, 1500)
         // console.log(title)
     }
         
     const post=()=>{
-        console.log("title ===",title)
+
+        if (title===""){
+            alert("标题不能为空")
+            return
+        }
+        if (html===""){
+            alert("内容不能为空")
+            return
+        }
         const url = "http://139.186.213.52:8082/writing"
         axios({
             method: 'post',
@@ -66,25 +74,7 @@ function MyEditor(props) {
         .then((data) => {
             console.log(data)
         })
-    }
-    //     .then((data) => {
-    //     console.log(data.data);
-    //     this.setState({
-    //         post_list: this.state.post_list.concat(data.data),
-    //     })
-    //     })
-    //     .catch((error) => {
-    //     console.log(error)
-    //     })
-    //     setTimeout(() => {
-    //             console.log(this.state.post_list);
-    //     }, 1000); 
-    //     }
-    // }
-    
-
-    
-    
+    }  
 
     return (
         <>
@@ -106,15 +96,10 @@ function MyEditor(props) {
                     style={{ height: '500px', overflowY: 'hidden' }}
                 />
             </div>
-            <div style={{ marginTop: '15px' }}>
+            {/* <div style={{ marginTop: '15px' }}>
                 {html}
-            </div>
-            <div>
-                <span>-----------------------</span>
-                <br />
-                {props.editor}
-                {props.html}
-            </div>
+            </div> */}
+
             <div>
             <button class="publish-btn" onClick={post}>发布</button>
             </div>

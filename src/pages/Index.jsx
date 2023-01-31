@@ -93,12 +93,11 @@ export default class Index extends React.Component {
   render(){
   return (
     <div>
-      <h1>hello</h1>
       <div>
         <HeaderAdmin/>
       </div>
       <br />
-      <h1>hello</h1>
+
       <div id='MainPage' className='MainPage'>
 
       {this.state.post_list.map((item, index) => {

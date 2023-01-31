@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 // import '../css/writing.css';
 import MyEditor from '../MyEditor';
+import HeaderAdmin from '../Header-admin';
 
 
 export default class Test extends React.Component{
@@ -22,6 +23,7 @@ export default class Test extends React.Component{
   render() {
       return (
         <div>
+
           {/* <header class="header">
       <input class="header-input" placeholder="请输入标题..." type="text" />
       <div class="header-action">
@@ -56,14 +58,8 @@ export default class Test extends React.Component{
     {/* <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> */}
     {/* <script src="/js/editormd.js"></script>  */}
     {/* <script src="https://static.mszlu.com/goblog/es6/md-assets/js/cos-js-sdk-v5.min.js"></script> */}
-    <div style={{"margin":"50px 50px 0px 50px "}}>
+    <div style={{"margin":"80px 50px 0px 50px "}}>
       <MyEditor editor={this.state.editor} html = {this.state.html} />
-    </div>
-    <div>
-      <span>----------------------------------</span>
-      <br />
-        发布测试栏
-        {MyEditor.html}
     </div>
     </div>
 
