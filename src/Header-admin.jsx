@@ -261,6 +261,12 @@ class HeaderAdmin extends React.Component{
                 </a>
               </li>
               <li>
+                <a class="dropdown-item d-flex align-items-center" href="/writing">
+                  <i class="bi bi-question-circle"></i>
+                  <span>写作</span>
+                </a>
+              </li>
+              <li>
                 <hr class="dropdown-divider" />
               </li>
 

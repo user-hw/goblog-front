@@ -1,6 +1,6 @@
 import React from "react";
-// import "./css/postElement/postElement_style.css"
-// import "./css/postElement/myStyle.css"
+import "./css/postElement/postElement_style.css"
+import "./css/postElement/myStyle.css"
 
 
 
