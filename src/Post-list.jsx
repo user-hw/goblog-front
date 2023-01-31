@@ -82,7 +82,7 @@ export default class PostList extends React.Component{
               })
             }
         </ul>
-        <Pagination style={{"text-align": "right","inlineSize":"50px"}} total={5} current={1} pageSize={1} onChange={this.changePage} />
+        <Pagination style={{"text-align": "right"}} total={5} current={1} pageSize={1} onChange={this.changePage} />
         {/* <Pagination pageNum={this.state.pageNum} pageCount={this.state.pageCount} changePage={this.changePage}/> */}
       </div>
   )}
