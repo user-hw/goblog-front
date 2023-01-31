@@ -5,6 +5,7 @@ import '../css/detail.css';
 import HeaderAdmin from '../Header-admin';
 
 import Valine from 'valine';
+import axios from 'axios'
 
 
 export default class Post extends React.Component {  
@@ -27,25 +28,23 @@ export default class Post extends React.Component {
       placeholder: "What are you talking about?"
     });
     const pid = window.location.href.split('/').slice(-1)
-    const url = "http://139.186.213.52:8082/post/"+pid
+    const url = "http://139.186.213.52:8082/post/id"
 
-    console.log(url)
-    
-    fetch(url,{
+    axios({
       method:'GET',
+      url: url,
+      params:{
+        id:pid[0],
+      }
     })
-     .then(res =>res.json())
+     .then(res =>res.data)
      .then((data) => {
-      //  console.log("data.data === ",data.data)  
        this.setState({
             post:data.data.post,
             userInfo:data.data.userInfo,
             test:"1"
        })
       })
-      // console.log("this.state.post === ",this.state.post)
-      // console.log("this.state.userInfo === ",this.state.userInfo)
-      // console.log("this.state.test === ",this.state.test)
      } 
   
 

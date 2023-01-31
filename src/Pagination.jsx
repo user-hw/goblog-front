@@ -19,8 +19,6 @@ class Pagination extends React.Component {
             );
         })
         return (
-            
-
             <div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
