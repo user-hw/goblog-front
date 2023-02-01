@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-react": "^1.0.6",
+    "antd": "^5.1.7",
     "axios": "^1.2.2",
     "js-md5": "^0.7.3",
     "qiniu-js": "^3.4.1",
