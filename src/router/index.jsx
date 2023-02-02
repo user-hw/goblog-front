@@ -7,7 +7,7 @@ import Index from "../pages/Index";
 import Test from "../pages/Test";
 import Post from "../pages/Post";
 import Writing from "../pages/Writing";
-import Demo from "../pages/Demo";
+import Admin from "../pages/Admin";
 
 import '../css/index.css';
 
@@ -24,7 +24,7 @@ const  BaseRouter = () =>{
             <Route path="/test" element={<Test />}></Route>
             <Route path="/post/:pid" element={<Post />} ></Route>
             <Route path="/writing" element={<Writing />} ></Route>
-            <Route path="/demo" element={<Demo />} ></Route>
+            <Route path="/admin/:name" element={<Admin />} ></Route>
         </Routes>
         </BrowserRouter >
 

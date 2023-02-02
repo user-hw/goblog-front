@@ -55,7 +55,7 @@ class HeaderAdmin extends React.Component{
           <img src="assets/img/logo.png" alt="" />
           <span class="d-none d-lg-block">CodeIsYourLife</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
+        
       </div>
       <div class="search-bar">
         <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -237,7 +237,7 @@ class HeaderAdmin extends React.Component{
               <li>
                 <a class="dropdown-item d-flex align-items-center" href={"/home/"+this.state.userName}>
                   <i class="bi bi-person"></i>
-                  <span>My Profile</span>
+                  <span>个人主页</span>
                 </a>
               </li>
               <li>
@@ -245,21 +245,16 @@ class HeaderAdmin extends React.Component{
               </li>
 
               <li>
-                <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <a class="dropdown-item d-flex align-items-center" href={"/admin/"+this.state.userName}>
                   <i class="bi bi-gear"></i>
-                  <span>Account Settings</span>
+                  <span>账户管理</span>
                 </a>
               </li>
               <li>
                 <hr class="dropdown-divider" />
               </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                  <i class="bi bi-question-circle"></i>
-                  <span>Need Help?</span>
-                </a>
-              </li>
+              
               <li>
                 <a class="dropdown-item d-flex align-items-center" href="/writing">
                   <i class="bi bi-question-circle"></i>
@@ -300,25 +295,3 @@ function LoginOut(){
 var TOKEN_KEY = "AUTH_TOKEN";
 var USER_KEY = "USER_INFO";
 
-// LoginCheck()
-
-
-// var script = document.createElement('script');
-// script.type = 'text/javascript';
-// script.async = true;
-// script.src = '/resource/vendor/main.js';
-// document.querySelector("#header-admin").appendChild(script);   
- 
-// var script2 = document.createElement('script');
-// script2.type = 'text/javascript';
-// script2.async = true;
-// script2.src = 'https://code.jquery.com/jquery-1.12.4.min.js';
-// document.querySelector("#header-admin").appendChild(script2);   
-
-// var script3 = document.createElement('script');
-// script3.type = 'text/javascript';
-// script3.async = true;
-// script3.src = '/resource/js/index.js';
-// document.querySelector("#header-admin").appendChild(script3);  
-
-// ReactDOM.render(<HeaderAdmin />, document.querySelector("#header-admin"));

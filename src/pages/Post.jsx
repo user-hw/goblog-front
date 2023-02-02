@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
-import '../css/detail.css';
+// import '../css/detail.css';
 
 import HeaderAdmin from '../Header-admin';
 
@@ -58,7 +58,7 @@ export default class Post extends React.Component {
         <script src="https://static.mszlu.com/goblog/es6/md-assets/js/valine.min.js"></script>
 
         <div className="detail">
-          <div className="detail-left">
+          <div className="detail-left" style={{weight:'100%'}}>
             <h1 className="detail-title">{this.state.post.title}</h1>
             <div className="detail-action">
               <span>
