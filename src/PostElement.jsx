@@ -20,7 +20,7 @@ class PostElment extends React.Component {
                 <div class="row align-items-center postElement">
                     <div class="col-12 col-md-6">
                         <div class="single-blog-thumbnail">
-                            <img src={require('./img/3.jpg')} alt="" />
+                            <img src={this.props.data.blogPost.titleImg} alt="" style={{height:'260px'}}/>
                             <div class="post-date">
                                 <a href="#">12 <span>march</span></a>
                             </div>
@@ -32,8 +32,8 @@ class PostElment extends React.Component {
                             <div class="line"></div>
                             <a href="#" class="post-tag">Lifestyle</a>
                             <h4><a href={"/post/" +this.props.data.blogPost.ID}class="post-headline">{this.props.data.blogPost.title}</a></h4>
-                            {/* <p>{this.props.data.blogPost.content}</p> */}
-                            <p dangerouslySetInnerHTML = {{ __html: this.props.data.blogPost.content}} />
+                            <p>{this.props.data.blogPost.text}</p>
+
                             <div class="post-meta">
                                 <p id="d1">By <a href={"/home/"+this.props.data.userName}>{this.props.data.NickName}</a></p>
                                 <p id="d2">3 comments</p>
