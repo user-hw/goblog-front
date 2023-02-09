@@ -36,8 +36,11 @@ export default class Index extends React.Component {
         load
       } = this;
       // this.isBottom()
+      console.log(window.innerHeight)
+      console.log(document.documentElement.scrollTop)
+      console.log(document.documentElement.offsetHeight)
   
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight && this.isBottom()===false ) {
+      if (window.innerHeight + document.documentElement.scrollTop >= (document.documentElement.offsetHeight-5) && this.isBottom()===false ) {
         this.state.pageNum +=1
         this.load();
         
@@ -86,9 +89,9 @@ export default class Index extends React.Component {
     .catch((error) => {
       console.log(error)
     })
-    setTimeout(() => {
-            console.log(this.state.post_list);
-      }, 1000); 
+    // setTimeout(() => {
+    //         console.log(this.state.post_list);
+    //   }, 1000); 
 }  
   render(){
   return (
