@@ -53,7 +53,7 @@ export default class Login extends React.Component{
     // alert('用户名：' + this.state.username + '，密码：' + this.state.password+ '，密码：' + MD5Passwd)
 
 
-    let queryStringRequest = new Request('http://139.186.213.52:8082/login/', {
+    let queryStringRequest = new Request('http://139.186.213.52:8082/api/v1/users/login', {
       method:  'POST',
       body: JSON.stringify({
         username: this.state.username,
